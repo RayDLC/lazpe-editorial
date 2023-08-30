@@ -1,0 +1,33 @@
+<header class="flex place-content-between items-center pb-2 border-b-[1px] border-gray-400">
+    <h2 class="select-none">Libros leidos <span class="text-gray-500 text-sm ms-1">({{ lstReadedBooks().length}})</span></h2>
+    <svg-read-book />
+</header>
+<section class="my-5 h-5/6 overflow-y-auto overflow-x-hidden">
+    <ng-container *ngIf="!lstReadedBooks().length">
+        <h2 class="text-gray-400 text-center">Aun no cuentas con libros leidos.</h2>
+    </ng-container>
+    <ng-container *ngIf="lstReadedBooks().length">
+        <ol>
+            <li class="flex gap-4 py-3 lg:gap-8" *ngFor="let item of lstReadedBooks()">
+                <img class="max-h-[100px] object-cover my-auto md:max-h-[150px] lg:max-h-[180px]" [src]="item.book.cover" alt="#">
+                <div class="flex flex-col md:gap-3 flex-grow line-clamp-2 [&>p]:text-gray-300 [&>p]:block [&>p>span]:text-white [&>p>span]:block">
+                    <header class="flex items-center place-content-between">
+                        <p class="font-bold text-base truncate">{{ item.book.title }}</p>
+                        <div class="flex gap-3 me-4">
+                            <button (click)="deleteFromReadedBooks(item)" class="p-1 transition duration-500"                                              
+                                matTooltip="Eliminar de libros leidos">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            <button (click)="addToUnreadedBooks(item)" class="p-1 transition duration-500"                                             
+                                matTooltip="Marcar como por leer">
+                                <mat-icon>book</mat-icon>
+                            </button>
+                        </div>
+                    </header>
+                    <p>Género: <span>{{ item.book.genre }}</span></p>
+                    <p>Autor: <span>{{ item.book.author.name }}</span></p>
+                </div>
+            </li>
+        </ol>
+    </ng-container>
+</section>

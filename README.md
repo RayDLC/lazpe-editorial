@@ -1,27 +1,31 @@
-# LibrosApp
+# APP - LAZPE EDITORIAL
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+In this project I try to reproduce the next project **https://lazpe-editorial.vercel.app/** in Angular v16, all the credits goes to the original creator 👍.
 
-## Development server
+![first-screen](https://i.ibb.co/kH3Tjs1/lazpe-editorial-first-screen.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+`Live demo: <link>`
 
-## Code scaffolding
+## Steps to run this project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Clone the repository
 
-## Build
+    `git clone https://github.com/RayDLC/lazpe-editorial.git`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Install the package
 
-## Running unit tests
+    `pnpm intall`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Initialize the server in localhost
 
-## Running end-to-end tests
+    `ng serve`
+4. Open the following url
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+    `localhost:4200`
 
-## Further help
+## Stack used 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
++ Angular v16
++ Tailwind
++ Angular Material
++ Package Manger (pnpm)

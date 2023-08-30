@@ -1,0 +1,45 @@
+.link-navbar {
+    text-decoration: none;
+    color: white;
+    position: relative;
+    padding-left: 0.5rem;
+    transition: padding-left .3s ease;
+}
+
+.link-navbar::before {
+    content: "";
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: block;
+    height: 3px;
+    width: 3px;
+    background-color: white;
+    position: absolute;
+    transition: width .3s ease;
+}
+
+.link-navbar:hover,
+.link-navbar.selected {
+  padding-left: 1.5rem;
+}
+
+.link-navbar:hover::before,
+.link-navbar.selected::before {
+  width: 1rem;
+}
+
+/* li {
+    display: list-item;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+  height: 64px;
+  width: 150vw;
+  position: fixed;
+} */

@@ -1,0 +1,87 @@
+<main id="principal-content" class="flex relative px-3 py-16 z-1 w-max h-full">
+    <div id="explorar" class="books-content w-[100vw] px-5 py-5 border-t-[3px] border-s-[3px] lg:flex">
+        <ng-container *ngIf="!actualBook()">
+            <div class="w-full h-1/2 lg:h-full lg:w-1/2 lg:flex lg:items-center">
+                <div>
+                    <p class="text-3xl font-bold lg:text-8xl">Somos LAZPE Editorial</p>
+                    <p class="text-xl">Exploramos las vastas fronteras del conocimiento literario, 
+                        erigiendo puentes entre la erudición y la imaginación, para deleitar 
+                        las mentes más ávidas con el esplendor de nuestras obras literarias.
+                    </p>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="actualBook()">
+            <div class="w-full flex lg:h-full lg:w-1/2 lg:px-5 lg:mt-16">
+                <img class="object-cover max-lg:my-auto lg:max-h-[450px] lg:pt-8 max-h-[250px] sm:max-h-[350px] md:max-h-[350px]" [src]="actualBook()!.book.cover || ''" alt="#">
+                <div class="p-8 flex-grow [&>p]:py-2 [&>p]:text-gray-300 [&>p>span]:text-white lg:p-5 max-sm:px-3 max-sm:py-0 max-sm:[&>p]:py-1">
+                    <div class="flex items-center place-content-between">
+                        <p class="text-2xl font-bold">{{ actualBook()!.book.title }}</p>
+                        <button (click)="closeBookDetails()" mat-icon-button matTooltip="Cerrar detalle"><mat-icon>close</mat-icon></button>
+                    </div>
+                    <div class="border-[1px] border-white min-w-full mb-3"></div>
+                    <button (click)="handleUnreadBook()" class="p-3 transition duration-500" [ngClass]="{'text-gray-500': checkUnreadBook()}"
+                        matBadge="-" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="!checkUnreadBook()"
+                        [matTooltip]="!checkUnreadBook() ? 'Agregar a libros por leer' : 'Eliminar de libros por leer'">
+                        <mat-icon class="icon-detials">book</mat-icon>
+                    </button>
+                    <button (click)="handleReadedBook()" class="p-3 transition duration-500" [ngClass]="{'text-gray-500': checkReadedBook()}"
+                        matBadge="-" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="!checkReadedBook()"
+                        [matTooltip]="!checkReadedBook() ? 'Agregar a libros leidos' : 'Eliminar de libros leidos'">
+                        <mat-icon class="icon-detials">done</mat-icon>
+                    </button>
+                    <p>Autor: <span>{{ actualBook()!.book.author.name }}</span></p>
+                    <p>Sinopsis: <span>{{ actualBook()!.book.synopsis }}</span></p>                                
+                    <p>Género: <span>{{ actualBook()!.book.genre }}</span></p>
+                    <p>Páginas: <span>{{ actualBook()!.book.pages }}</span></p>
+                    <p>Año: <span>{{ actualBook()!.book.year }}</span></p>
+                </div>
+            </div>
+        </ng-container>
+        <div class="w-full h-1/2 lg:h-full lg:w-1/2">
+            <section class="flex items-center max-lg:flex-col lg:place-content-center lg:gap-5">
+                <select [formControl]="filtroValue" (change)="filtrarLibros()" class="w-full px-3 text-lg bg-transparent backdrop-blur-sm text-gray-200 
+                    [&>option]:text-gray-200 [&>option]:bg-gray-500 border-2 border-gray-500 lg:w-fit" name="filtros" id="filtro-select">
+                    <option value="">Todos los géneros</option>
+                    <option value="Ficción">Ficción</option>
+                    <option value="Filosofía">Filosofía</option>
+                    <option value="Novela">Novela</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Psicología">Psicología</option>
+                    <option value="Historia">Historia</option>
+                    <option value="Ciencia ficción">Ciencia ficción</option>
+                </select>
+                <div class="flex gap-3 [&>label]:flex py-5 lg:gap-8">
+                    <label [ngClass]="{'opacity-60': !lstBooks().length}" class="text-lg" for="filter-results flex">
+                        {{ lstBooks().length }}
+                        <svg-filter />
+                    </label>
+                    <label [ngClass]="{'opacity-60': true}" class="text-lg" for="number-books">
+                        {{ initialLengthBooks() }}
+                        <svg-unread-book />
+                    </label>
+                    <label [ngClass]="{'opacity-60': !lstUnreadBooks().length}" class="text-lg" for="favorites-books">
+                        {{ lstUnreadBooks().length }}
+                        <svg-favorite />
+                    </label>
+                </div>
+            </section>
+            <section class="books-container flex overflow-x-auto px-5 py-3 gap-3 lg:flex-wrap">
+                <ng-container *ngFor="let item of lstBooks(); index as i">
+                    <div class="transition-transform transform hover:scale-110 hover:filter hover:brightness-125
+                        lg:grid lg:grid-cols-1 lg:grid-rows-[110px] lg:hover:z-20 lg:hover:scale-[1.30]">
+                        <img [id]="i" (click)="viewBookDetails(item.book)" class="hover:cursor-pointer max-h-[125px] max-w-[100px] object-cover lg:max-h-[180px] lg:max-w-[150px]" [src]="item.book.cover" alt="#">
+                    </div>
+                </ng-container>
+            </section>
+        </div>
+    </div>
+    <div id="mislistas" class="favorites-content w-[100vw] px-4 py-3 sm:px-6 sm:py-4 md:px-8 md:py-5 border-t-[3px] border-e-[3px] flex max-lg:flex-col gap-8">
+        <section class="h-1/2 border-[1px] border-dashed rounded-lg p-4 md:p-8 backdrop-blur-md lg:h-full lg:w-1/2">
+            <app-unreaded-books />
+        </section>
+        <section class="h-1/2 border-[1px] border-dashed rounded-lg p-4 md:p-8 backdrop-blur-md lg:h-full lg:w-1/2">
+            <app-readed-books />
+        </section>
+    </div>
+</main>

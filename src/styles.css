@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+    --font-monda: "Monda", sans-serif;
+    --font-jost: "Jost", sans-serif;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100%;
+}
+
+body {
+    font-family: var(--font-monda) !important;
+    background-image: url('https://lazpe-editorial.vercel.app/editorial-bg.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    color: white;
+    scroll-behavior: smooth;
+}
+
+.mat-h3, .mat-headline-6, .mat-typography .mat-h3, .mat-typography .mat-headline-6, .mat-typography h3 {
+    margin: 0px;
+}
+
+.mat-h2, .mat-headline-6, .mat-typography .mat-h2, .mat-typography .mat-headline-6, .mat-typography h2 {
+    margin: 0px;
+}
+
+.mat-h1, .mat-headline-6, .mat-typography .mat-h1, .mat-typography .mat-headline-6, .mat-typography h1 {
+    margin: 0px;
+}
+
+.mat-body p, .mat-body-2 p, .mat-typography .mat-body p, .mat-typography .mat-body-2 p, .mat-typography p {
+    margin: 0px;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #575757;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #b8b8b8;
+    border-radius: 10px;
+    border: 0px none #ffffff;
+}

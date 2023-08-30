@@ -1,0 +1,14 @@
+<nav class="flex fixed top-0 gap-3 px-3 items-center h-16 z-10 lg:gap-8">
+    <a href="#">
+        <p class="text-base sm:text-xl font-bold hover:cursor-pointer">LAZPE EDITORIAL</p>
+    </a>
+    <ul class="flex gap-3 [&>li>a]:hover:cursor-pointer lg:gap-8">
+        <li>
+            <a (click)="handleClickItem(paths[0])" class="link-navbar" [ngClass]="{'selected': paths[0] == actual_path()}">Explorar</a>
+        </li>
+        <li>
+            <a (click)="handleClickItem(paths[1])" class="link-navbar" [ngClass]="{'selected': paths[1] == actual_path()}">Mis Listas</a>
+        </li>
+    </ul>
+</nav>
+<app-books />
