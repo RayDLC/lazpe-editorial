@@ -1,10 +1,10 @@
 # APP - LAZPE EDITORIAL
 
-In this project I try to reproduce the next project **https://lazpe-editorial.vercel.app/** in Angular v16, all the credits goes to the original creator 👍.
+#### In this project I try to reproduce the next project **https://lazpe-editorial.vercel.app/** in Angular v16, all the credits goes to the original creator 👍.
 
 ![first-screen](https://i.ibb.co/kH3Tjs1/lazpe-editorial-first-screen.png)
 
-`Live demo: <link>`
+#### Live demo: **https://lazpe-editorial-xi.vercel.app/**
 
 ## Steps to run this project
 
@@ -19,6 +19,7 @@ In this project I try to reproduce the next project **https://lazpe-editorial.ve
 3. Initialize the server in localhost
 
     `ng serve`
+
 4. Open the following url
 
     `localhost:4200`
@@ -28,4 +29,4 @@ In this project I try to reproduce the next project **https://lazpe-editorial.ve
 + Angular v16
 + Tailwind
 + Angular Material
-+ Package Manger (pnpm)
++ Package Manager (pnpm)
