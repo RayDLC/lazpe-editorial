@@ -1,12 +1,14 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, ElementRef, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LIBRARY_BOOKS } from 'src/app/shared/constants';
 import { Book, Library } from 'src/app/shared/interfaces/Books.interface';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule} from '@angular/material/tooltip';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatBadgeModule } from '@angular/material/badge';
+import { LIBRARY_BOOKS } from 'src/app/shared/constants';
 import { BooksService } from 'src/app/services/books.service';
 import { UnreadedBooksComponent } from '../unreaded-books/unreaded-books.component';
 import { ReadedBooksComponent } from '../readed-books/readed-books.component';
@@ -31,7 +33,9 @@ import { SvgFavoriteComponent } from '../svg-favorite.component';
     SvgUnreaBookComponent,
     SvgReadBookComponent,
     SvgFilterComponent,
-    SvgFavoriteComponent
+    SvgFavoriteComponent,
+    MatAutocompleteModule,
+    MatFormFieldModule,
   ],
   templateUrl: './books.component.html',
   styleUrls: ['./books.component.css']
@@ -45,7 +49,7 @@ export default class BooksComponent {
   
   public initialLengthBooks = signal<number>(LIBRARY_BOOKS.length || 0);
   public filtroValue = new FormControl('');
-  public lstBooks = computed(() => this.serviceBooks.lstBooks());
+  public lstBooks = computed<Library[]>(() => this.serviceBooks.lstBooks());
   public lstReadedBooks = computed(() => this.serviceBooks.lstReadedBooks());
   public lstUnreadBooks = computed(() => this.serviceBooks.lstUnreadBooks());
   public actualBook = computed(() => this.serviceBooks.actualBook());

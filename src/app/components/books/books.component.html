@@ -12,7 +12,7 @@
             </div>
         </ng-container>
         <ng-container *ngIf="actualBook()">
-            <div class="w-full flex lg:h-full lg:w-1/2 lg:px-5 lg:mt-16">
+            <div id="container_detail_books1" class="w-full flex lg:h-full lg:w-1/2 lg:px-5 lg:mt-16">
                 <img class="object-cover max-lg:my-auto lg:max-h-[450px] lg:pt-8 max-h-[250px] sm:max-h-[350px] md:max-h-[350px]" [src]="actualBook()!.book.cover || ''" alt="#">
                 <div class="p-8 flex-grow [&>p]:py-2 [&>p]:text-gray-300 [&>p>span]:text-white lg:p-5 max-sm:px-3 max-sm:py-0 max-sm:[&>p]:py-1">
                     <div class="flex items-center place-content-between">
@@ -27,7 +27,7 @@
                     </button>
                     <button (click)="handleReadedBook()" class="p-3 transition duration-500" [ngClass]="{'text-gray-500': checkReadedBook()}"
                         matBadge="-" matBadgeColor="warn" matBadgeSize="small" [matBadgeHidden]="!checkReadedBook()"
-                        [matTooltip]="!checkReadedBook() ? 'Agregar a libros leidos' : 'Eliminar de libros leidos'">
+                        [matTooltip]="!checkReadedBook() ? 'Agregar a libros leídos' : 'Eliminar de libros leídos'">
                         <mat-icon class="icon-detials">done</mat-icon>
                     </button>
                     <p>Autor: <span>{{ actualBook()!.book.author.name }}</span></p>
@@ -66,12 +66,12 @@
                     </label>
                 </div>
             </section>
-            <section class="books-container flex overflow-x-auto px-5 py-3 gap-3 lg:flex-wrap">
-                <ng-container *ngFor="let item of lstBooks(); index as i">
-                    <div class="transition-transform transform hover:scale-110 hover:filter hover:brightness-125
-                        lg:grid lg:grid-cols-1 lg:grid-rows-[110px] lg:hover:z-20 lg:hover:scale-[1.30]">
-                        <img [id]="i" (click)="viewBookDetails(item.book)" class="hover:cursor-pointer max-h-[125px] max-w-[100px] object-cover lg:max-h-[180px] lg:max-w-[150px]" [src]="item.book.cover" alt="#">
-                    </div>
+            <section class="books-container flex overflow-x-auto mx-3 py-2
+                    lg:overflow-visible lg:mx-auto lg:grid lg:grid-flow-row lg:grid-cols-5 lg:max-w-[620px]
+                    xl:grid-cols-6">
+                <ng-container *ngFor="let item of lstBooks()">
+                    <img #bookImage [id]="item.book.title" (click)="viewBookDetails(item.book)" class="transition-transform transform hover:scale-110 hover:filter hover:brightness-150
+                        lg:hover:z-20 lg:hover:scale-[1.30] hover:cursor-pointer max-h-[125px] max-w-[100px] object-cover lg:max-h-[180px] lg:max-w-[150px]" [src]="item.book.cover" alt="#">
                 </ng-container>
             </section>
         </div>

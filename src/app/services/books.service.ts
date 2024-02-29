@@ -31,6 +31,7 @@ export class BooksService {
 
     public checkUnreadBook = computed<boolean>(() => 
         this.lstUnreadBooks().some(({ book: { title } }) => title === this.actualBook()?.book.title));
+    
     public checkReadedBook = computed<boolean>(() => 
         this.lstReadedBooks().some(({ book: { title } }) => title === this.actualBook()?.book.title));
 
